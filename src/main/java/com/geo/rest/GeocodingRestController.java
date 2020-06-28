@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.geo.model.Direction;
 import com.geo.model.Point;
 import com.geo.model.Way;
-import com.geo.service.GeoService;
+import com.geo.services.GeoService;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.maps.DirectionsApi;
@@ -26,6 +26,7 @@ import com.google.maps.model.DirectionsRoute;
 import com.google.maps.model.GeocodingResult;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.TravelMode;
+
 import reactor.core.publisher.Mono;
 
 /**
@@ -35,7 +36,7 @@ import reactor.core.publisher.Mono;
 */
 @RestController
 @RequestMapping("/api/geo")
-@CrossOrigin(origins="http://localhost:4200")							// @CrossOrigin is used to handle the request from a difference origin.
+@CrossOrigin(origins="http://localhost:4200'")							// @CrossOrigin is used to handle the request from a difference origin.
 public class GeocodingRestController {
     @Autowired
     private GeoApiContext context;
@@ -102,11 +103,10 @@ public class GeocodingRestController {
 		return points;
 	}
     
-    @GetMapping(value = "/direction",headers="Accept=application/json")
-     public Mono<Direction> getCoordinatesFromBackend(String from, String to) {
-    	System.out.println("before call service"+from+to);
-    	Point directionInput=geoService.getLocation(from);
-    	System.out.println("after call service"+directionInput);
-		return Mono.just(new Direction(new Point(23D,6D),new Point(23D,6.9D)));
+    @GetMapping(value = "/direction",headers="application/json")
+     public Direction getCoordinatesFromBackend(String from, String to) {
+    	Point locationFrom=geoService.getLocation(from);
+    	Point locationTo=geoService.getLocation(to);
+		return new Direction(locationFrom,locationTo);
     }
 }

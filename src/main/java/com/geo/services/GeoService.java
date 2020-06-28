@@ -1,4 +1,4 @@
-package com.geo.service;
+package com.geo.services;
 
 import java.io.IOException;
 
@@ -23,7 +23,6 @@ public class GeoService {
     @Autowired
     private GeoApiContext context;
 	public Point getLocation(String adress) {
-		System.out.println(".....adress"+adress);
 
 		GeocodingResult[] results=null;
 		try {
@@ -43,8 +42,9 @@ public class GeoService {
 			System.out.println("............Other Exceptions");
 			e.printStackTrace();
 		}
-		Gson gson = new GsonBuilder().setPrettyPrinting().create();
-		System.out.println(gson.toJson(results[0]));
-			return null;
+		//Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		//System.out.println(gson.toJson("results[0])"+results[0].geometry.location.lat));
+		Point location=new Point(results[0].geometry.location.lat,results[0].geometry.location.lng);
+			return location;
 	}
 }

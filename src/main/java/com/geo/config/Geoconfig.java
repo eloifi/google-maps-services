@@ -15,11 +15,9 @@ public class Geoconfig {
 	
 	@Bean
 	public GeoApiContext getGeoApiContext() {
-		System.out.println("in context bean ..........");
 		GeoApiContext context = new GeoApiContext.Builder()
-			    .apiKey("NAIzaSyA2QqvK-05eRL0Nob3z5Rn7VD6j5wosuL8")
+			    .apiKey("AIzaSyA2QqvK-05eRL0Nob3z5Rn7VD6j5wosuL8")
 			    .build();
-		System.out.println("after init context bean ..........");
 			return context;
 	}
 }

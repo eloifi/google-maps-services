@@ -20,7 +20,7 @@ public class Direction {
 		this.to = to;
 	}
 
-	public Point getFrom() {
+	public Point from() {
 		return from;
 	}
 
@@ -28,7 +28,7 @@ public class Direction {
 		this.from = from;
 	}
 
-	public Point getTo() {
+	public Point to() {
 		return to;
 	}
 
